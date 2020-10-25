@@ -25,39 +25,39 @@ int main()
 	int numberOfElements1 = 15;
 	int numberOfElements2 = 13;
 	
-//	cout << "==================" << endl << "BINARY SEARCH TREE" << endl;
-//	t = clock(); // gets current time
-//	for (int i=0; i<numberOfElements1; i++) {treeValues.add(vectorStudents1[i]);} // populates the main tree.
-//	for (int i=0; i<numberOfElements2; i++) {treeValues.add(vectorStudents2[i]);} // populates the auxiliary tree.
-//
-//	treeValues += treeAux; // tests overloaded += operator
-//
-//	cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
-//
-//    for (int i=0; i<500000; i++)
-//    { // add and remove over and over again
-//       	treeValues.remove("Alex");
-//		treeValues.remove("Peter");
-//		treeValues.remove("John");
-//		treeValues.remove("Pamela");
-//		treeValues.remove("Kate");
-//		treeValues.remove("Tim");
-//		treeValues.remove("Steve");
-//		treeValues.remove("Rick");
-//		treeValues.remove("Sam");
-//        treeValues.add("Alex");
-//		treeValues.add("Peter");
-//		treeValues.add("John");
-//		treeValues.add("Pamela");
-//		treeValues.add("Kate");
-//		treeValues.add("Tim");
-//		treeValues.add("Steve");
-//		treeValues.add("Rick");
-//	}
-//	cout << "Final tree  : " << treeValues << endl << endl; // prints the contents of the tree.
-//	cout << "Time elapsed: " << (clock() - t)/1000.0 << " seconds" << endl; // prints elapsed time.
-//	cout << "Time per ins/del operation: " << 1000.0*(double)(clock() - t)/(double)(500000*17) << " milliseconds." << endl << endl;
-//
+	 cout << "==================" << endl << "BINARY SEARCH TREE" << endl;
+	 t = clock(); // gets current time
+	 for (int i=0; i<numberOfElements1; i++) {treeValues.add(vectorStudents1[i]);} // populates the main tree.
+	 for (int i=0; i<numberOfElements2; i++) {treeValues.add(vectorStudents2[i]);} // populates the auxiliary tree.
+
+	 treeValues += treeAux; // tests overloaded += operator
+
+	 cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
+
+     for (int i=0; i<500000; i++)
+     { // add and remove over and over again
+        	treeValues.remove("Alex");
+	 	treeValues.remove("Peter");
+	 	treeValues.remove("John");
+	 	treeValues.remove("Pamela");
+	 	treeValues.remove("Kate");
+	 	treeValues.remove("Tim");
+	 	treeValues.remove("Steve");
+	 	treeValues.remove("Rick");
+	 	treeValues.remove("Sam");
+         treeValues.add("Alex");
+	 	treeValues.add("Peter");
+	 	treeValues.add("John");
+	 	treeValues.add("Pamela");
+	 	treeValues.add("Kate");
+	 	treeValues.add("Tim");
+	 	treeValues.add("Steve");
+	 	treeValues.add("Rick");
+	 }
+	 cout << "Final tree  : " << treeValues << endl << endl; // prints the contents of the tree.
+	 cout << "Time elapsed: " << (clock() - t)/1000.0 << " seconds" << endl; // prints elapsed time.
+	 cout << "Time per ins/del operation: " << 1000.0*(double)(clock() - t)/(double)(500000*17) << " milliseconds." << endl << endl;
+
 
 	cout << "==================" << endl << "HASH TABLE" << endl;
 	t = clock(); // gets current time

@@ -33,7 +33,7 @@ public:
         data[index] = NULL;
     }
 
-    std::string printTable() { // TODO: Maybe make private?
+    std::string toString() { // TODO: Maybe make private?
         std::string hashTableString;
         for (int i = 0; i < SIZE; i++) {
             if (data[i] != "") {
@@ -44,12 +44,12 @@ public:
     }
 
     void operator += (HTable& HTable2) {
-        std::string HTable2Data;
-        HTable2Data = HTable2.printTable();
+        std::string HTable2String;
+        HTable2String = HTable2.toString();
         int pos = -1;
-        for (unsigned long int i = 0; i <= HTable2Data.length(); i++) {
-            if (isspace(HTable2Data[i])) {
-                add(HTable2Data.substr(pos+1, i-pos-1));
+        for (unsigned long int i = 0; i <= HTable2String.length(); i++) {
+            if (isspace(HTable2String[i])) {
+                add(HTable2String.substr(pos+1, i-(pos+1)));
                 pos = i;
             }
         }
@@ -71,7 +71,7 @@ private:
 
 template <typename value_type>
 std::ostream& operator << (std::ostream& out, HTable<value_type> hashTable) {
-    std::string HTstring = hashTable.printTable();
+    std::string HTstring = hashTable.toString();
     out << HTstring;
     return out;
 }

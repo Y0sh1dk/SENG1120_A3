@@ -16,11 +16,11 @@ public:
         rightChild = NULL;
     }
 
-    BTNode(value_type givenData, BTNode* givenParentNode = NULL, BTNode* givenLeftChild = NULL, BTNode* givenRightChild = NULL) {
+    BTNode(value_type givenData, BTNode* givenParentNode = NULL) {
         data = givenData;
         parent = givenParentNode;
-        leftChild = givenLeftChild;
-        rightChild = givenRightChild;
+        leftChild = NULL;
+        rightChild = NULL;
     }
 
     ~BTNode() {
