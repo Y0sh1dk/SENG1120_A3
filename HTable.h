@@ -16,27 +16,28 @@ public:
     }
 
     HTable(value_type data) {
-        add(data);
+        add(data);  // Add given data to HTable
     }
 
     ~HTable() {
-
+        // Nothing to do here?
     }
 
     void add(value_type givenData) {
-        data[hashFunc(givenData)] = givenData;
+        data[hashFunc(givenData)] = givenData;      // Assign data to array at index given by hashFunc()
     }
 
-    void remove(value_type data) {
-        int index;
-        index = hashFunc(data);
-        data[index] = (char)NULL;
+    void remove(value_type givendata) {
+//        int index;
+//        index = hashFunc(givendata);
+//        data[hashFunc(givendata)] = (char)NULL;
+        data[hashFunc(givendata)] = "";
     }
 
     std::string toString() {
         std::string hashTableString;
-        for (int i = 0; i < SIZE; i++) {
-            if (data[i] != "") {
+        for (int i = 0; i < SIZE; i++) {            // For each element in the array
+            if (data[i] != "") {                    // If contains data, append to string
                 hashTableString += data[i] + " ";
             }
         }

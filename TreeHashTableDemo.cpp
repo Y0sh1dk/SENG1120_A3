@@ -77,7 +77,7 @@ int main()
 		tableValues.remove("Tim");
 		tableValues.remove("Steve");
 		tableValues.remove("Rick");
-		tableValues.remove("Sam");
+		tableValues.remove("Sam"); // THIS THE ISSUE FOR MISSING "Daniel"
         tableValues.add("Alex");
 		tableValues.add("Peter");
 		tableValues.add("John");
