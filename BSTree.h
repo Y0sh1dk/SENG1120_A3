@@ -2,10 +2,12 @@
 // Created by Yosiah on 24/10/2020.
 //
 
-#ifndef SENG1120_A3_BSTREE_H
-#define SENG1120_A3_BSTREE_H
+#ifndef BSTREE_H
+#define BSTREE_H
 
 #include <ostream>
+#include <iostream>
+
 #include "BTNode.h"
 
 template <typename value_type>
@@ -31,7 +33,7 @@ public:
         if (node == NULL) {
             return;
         } else {
-            if (givenData == node->getData()) { // TODO:Breaks here when comparing ""
+            if (givenData == node->getData()) { // TODO:Breaks here if comparing ""
                 node->setData(givenData);                                   // Replace data
             } else if (givenData > node->getData()) {                       // right
                 if (node->getRightChild() == NULL) {
@@ -53,11 +55,15 @@ public:
         if (rootNode == NULL) {
             std::cout << "Cannot remove from a empty tree!" << std::endl;
         } else {
-            removeData(rootNode, givenData);
+            removeData(givenData);
         }
     }
 
-    void removeData(BTNode<value_type>* node, value_type givenData) { // TODO: Make private??
+    void removeData(value_type givenData) { // TODO: Make private??
+        BTNode<value_type>* node = findNode(rootNode, givenData); // Find node with the word in it
+        if (node == NULL) { // Word doesnt exist!
+            return;
+        }
         if (howManyChildren(node) == 0) {               // leaf node
             if (node == rootNode) {                     // Root node
                 delete(rootNode);
@@ -107,75 +113,10 @@ public:
         } else if (howManyChildren(node) == 2) {        // two children
             BTNode<value_type>* minRightNode = minNode(node->getRightChild());
             value_type temp = minRightNode->getData();
-            removeData(minRightNode ,minRightNode->getData()); // recursive call
+            removeData(minRightNode->getData());        // recursive call
             node->setData(temp);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    void remove(value_type givenData) {
-//        BTNode<value_type>* dataNode = findNode(rootNode, givenData);
-//        if (dataNode != NULL) { // If the word was found
-////            std::cout << dataNode->getData() << std::endl;
-//            if (dataNode->getLeftChild() == NULL && dataNode->getRightChild() == NULL) { // leaf node
-//                if (dataNode != rootNode) {
-//                    if (dataNode->getParent()->getLeftChild() == dataNode) { // if parents left child is this node
-//                        dataNode->getParent()->setLeftChild(NULL);
-//                    } else if (dataNode->getParent()->getRightChild() == dataNode) { // if parents right child is this node
-//                        dataNode->getParent()->setRightChild(NULL);
-//                    }
-//                    delete(dataNode);
-//                } else { // If deleting root node
-//                    delete(rootNode);
-//                    rootNode = NULL;
-//                }
-//            } else if ((dataNode->getLeftChild() == NULL) != (dataNode->getRightChild() == NULL)) { // Node with 1 child
-//                if (dataNode->getLeftChild() != NULL) { // data is in left child
-//                    if (dataNode != rootNode) {
-//                        if (dataNode->getParent()->getLeftChild() == dataNode) {
-//                            dataNode->getParent()->setLeftChild(dataNode->getLeftChild());
-//                        } else if (dataNode->getParent()->getRightChild() == dataNode) {
-//                            dataNode->getParent()->setRightChild(dataNode->getLeftChild());
-//                        }
-//                        delete(dataNode);
-//                    } else { // is root node
-//                        rootNode = dataNode->getLeftChild();
-//                        delete(dataNode);
-//                    }
-//                } else if (dataNode->getRightChild() != NULL) { // data is in right child
-//                    if (dataNode != rootNode) {
-//                        if (dataNode->getParent()->getLeftChild() == dataNode) {
-//                            dataNode->getParent()->setLeftChild(dataNode->getRightChild());
-//                        } else if (dataNode->getParent()->getRightChild() == dataNode) {
-//                            dataNode->getParent()->setRightChild(dataNode->getRightChild());
-//                        }
-//                        delete(dataNode);
-//                    } else { // is root node
-//                        rootNode = dataNode->getRightChild();
-//                        delete(dataNode);
-//                    }
-//                }
-//            } else if ((dataNode->getLeftChild() != NULL) && (dataNode->getRightChild() != NULL)) { // has two childs
-//                //TODO: get min node on right of current node
-//                BTNode<value_type>* minRightNode = minNode(dataNode->getRightChild());
-//                value_type temp = minRightNode->getData();
-//                remove(minRightNode->getData()); // recursive call
-//                dataNode->setData(temp);
-//            }
-//        }
-//    }
 
     std::string toString() {
         return infixTraversal(rootNode);
@@ -217,6 +158,7 @@ private:
                 return findNode(node->getLeftChild(), data);
             }
         }
+        return NULL;
     }
 
     BTNode<value_type>* minNode(BTNode<value_type>* currentNode) { // Find minimum node under current node
@@ -236,11 +178,13 @@ private:
         }
     }
 
-    std::string whereUnderParent(BTNode<value_type>* node) { // HATE returning string but oh well
+    std::string whereUnderParent(BTNode<value_type>* node) { // Dont like returning strings TODO: refactor to const's?
         if (node->getParent()->getLeftChild() == node) {
             return "LEFTCHILD";
         } else if (node->getParent()->getRightChild() == node) {
             return "RIGHTCHILD";
+        } else {
+            return NULL;
         }
     }
 
@@ -254,4 +198,4 @@ std::ostream& operator << (std::ostream& out, BSTree<value_type> tree) {
     return out;
 }
 
-#endif //SENG1120_A3_BSTREE_H
+#endif //BSTREE_H

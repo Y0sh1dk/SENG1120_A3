@@ -2,8 +2,8 @@
 // Created by Yosiah on 24/10/2020.
 //
 
-#ifndef SENG1120_A3_BTNODE_H
-#define SENG1120_A3_BTNODE_H
+#ifndef BTNODE_H
+#define BTNODE_H
 
 #include <cstdlib>
 
@@ -24,7 +24,7 @@ public:
     }
 
     ~BTNode() {
-
+        //TODO: Nothing to do here?
     }
 
     void setData(value_type givenData) {
@@ -66,4 +66,4 @@ private:
     BTNode* rightChild;
 };
 
-#endif //SENG1120_A3_BTNODE_H
+#endif //BTNODE_H

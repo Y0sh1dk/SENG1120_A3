@@ -53,7 +53,6 @@ int main()
 	 	treeValues.add("Tim");
 	 	treeValues.add("Steve");
 	 	treeValues.add("Rick");
-         cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
 	 }
 	 cout << "Final tree  : " << treeValues << endl << endl; // prints the contents of the tree.
 	 cout << "Time elapsed: " << (clock() - t)/1000.0 << " seconds" << endl; // prints elapsed time.

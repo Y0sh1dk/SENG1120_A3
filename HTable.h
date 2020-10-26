@@ -5,8 +5,8 @@
 #include <iostream>
 #include <string>
 
-#ifndef SENG1120_A3_HTABLE_H
-#define SENG1120_A3_HTABLE_H
+#ifndef HTABLE_H
+#define HTABLE_H
 
 template <typename value_type>
 class HTable {
@@ -30,10 +30,10 @@ public:
     void remove(value_type data) {
         int index;
         index = hashFunc(data);
-        data[index] = NULL;
+        data[index] = (char)NULL;
     }
 
-    std::string toString() { // TODO: Maybe make private?
+    std::string toString() {
         std::string hashTableString;
         for (int i = 0; i < SIZE; i++) {
             if (data[i] != "") {
@@ -47,7 +47,7 @@ public:
         std::string HTable2String;
         HTable2String = HTable2.toString();
         int pos = -1;
-        for (unsigned long int i = 0; i <= HTable2String.length(); i++) {
+        for (unsigned long int i = 0; i <= HTable2String.length(); i++) { // TODO: refactor to use iterator?
             if (isspace(HTable2String[i])) {
                 add(HTable2String.substr(pos+1, i-(pos+1)));
                 pos = i;
@@ -61,7 +61,7 @@ private:
 
     int hashFunc(value_type givenData) { // TODO: hardcode as string?
         int addResult = 0;
-        for (int i = 0; i < givenData.length(); i++ ) {
+        for (unsigned long int i = 0; i < givenData.length(); i++ ) { // TODO: refactor to use iterator?
             addResult += (int)givenData[i];
         }
         return  addResult % 150;
@@ -76,4 +76,4 @@ std::ostream& operator << (std::ostream& out, HTable<value_type> hashTable) {
     return out;
 }
 
-#endif //SENG1120_A3_HTABLE_H
+#endif //HTABLE_H
