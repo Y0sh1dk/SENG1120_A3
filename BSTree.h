@@ -36,7 +36,7 @@ public:
     //
     // Post Condition: None
     ~BSTree() {
-        // TODO: this
+        remove(rootNode);
     }
 
     // Pre-Condition: data of tree value_type
@@ -222,11 +222,17 @@ private:
         }
     }
 
+    void remove(BTNode<value_type>* node) {
+        remove(node->getLeftChild());
+        remove(node->getRightChild());
+        delete(node);
+    }
+
 };
 
 
 template <typename value_type>
-std::ostream& operator << (std::ostream& out, BSTree<value_type> tree) {
+std::ostream& operator << (std::ostream& out, BSTree<value_type>& tree) {
     std::string treeString = tree.toString();                                       // Get string representation of tree
     out << treeString;
     return out;

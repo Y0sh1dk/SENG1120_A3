@@ -48,9 +48,6 @@ public:
     //
     // Post Condition:
     void remove(value_type givendata) {
-//        int index;
-//        index = hashFunc(givendata);
-//        data[hashFunc(givendata)] = (char)NULL;
         data[hashFunc(givendata)] = "";
     }
 
@@ -97,7 +94,7 @@ private:
 };
 
 template <typename value_type>
-std::ostream& operator << (std::ostream& out, HTable<value_type> hashTable) {
+std::ostream& operator << (std::ostream& out, HTable<value_type>& hashTable) {
     std::string HTstring = hashTable.toString();
     out << HTstring;
     return out;
