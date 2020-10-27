@@ -1,6 +1,11 @@
-//
-// Created by Yosiah on 24/10/2020.
-//
+/*
+ * Name: Yosiah de Koeyer
+ * Student No: c3329520
+ * Course: SENG1120 - A3
+ *
+ * File: HTable.h
+ * Description: HTable Declaration and Implementation
+ */
 
 #include <iostream>
 #include <string>
@@ -11,22 +16,37 @@
 template <typename value_type>
 class HTable {
 public:
+    // Pre-Condition:
+    //
+    // Post Condition:
     HTable() {
-
+        // TODO: initalize array maybe?
     }
 
+    // Pre-Condition:
+    //
+    // Post Condition:
     HTable(value_type data) {
         add(data);  // Add given data to HTable
     }
 
+    // Pre-Condition:
+    //
+    // Post Condition:
     ~HTable() {
         // Nothing to do here?
     }
 
+    // Pre-Condition:
+    //
+    // Post Condition:
     void add(value_type givenData) {
         data[hashFunc(givenData)] = givenData;      // Assign data to array at index given by hashFunc()
     }
 
+    // Pre-Condition:
+    //
+    // Post Condition:
     void remove(value_type givendata) {
 //        int index;
 //        index = hashFunc(givendata);
@@ -34,6 +54,9 @@ public:
         data[hashFunc(givendata)] = "";
     }
 
+    // Pre-Condition:
+    //
+    // Post Condition:
     std::string toString() {
         std::string hashTableString;
         for (int i = 0; i < SIZE; i++) {            // For each element in the array
@@ -44,6 +67,9 @@ public:
         return hashTableString;
     }
 
+    // Pre-Condition:
+    //
+    // Post Condition:
     void operator += (HTable& HTable2) {
         std::string HTable2String;
         HTable2String = HTable2.toString();

@@ -1,6 +1,11 @@
-//
-// Created by Yosiah on 24/10/2020.
-//
+/*
+ * Name: Yosiah de Koeyer
+ * Student No: c3329520
+ * Course: SENG1120 - A3
+ *
+ * File: BSTree.h
+ * Description: BSTree Declaration and Implementation
+ */
 
 #ifndef BSTREE_H
 #define BSTREE_H
@@ -13,18 +18,30 @@
 template <typename value_type>
 class BSTree {
 public:
+    // Pre-Condition: None
+    // Creates a empty BSTree
+    // Post Condition: None
     BSTree() {
         rootNode = NULL;
     }
 
+    // Pre-Condition: BTNode pointer
+    // Creates a BSTree from a given node, given node becomes root
+    // Post Condition: None
     BSTree(BTNode<value_type>* givenRoot) {     // If passed a tree (Node)
         rootNode = givenRoot;
     }
 
+    // Pre-Condition: None
+    //
+    // Post Condition: None
     ~BSTree() {
         // TODO: this
     }
 
+    // Pre-Condition: data of tree value_type
+    // Adds a node containing the given data to the tree
+    // Post Condition: None
     void add(value_type givenData) {
         if (rootNode == NULL) {                             // If BST empty
             rootNode = new BTNode<value_type>(givenData);   // New data will be root node
@@ -33,6 +50,9 @@ public:
         }
     }
 
+    // Pre-Condition: data of tree value_type
+    // Removes node containing the given data if it exists
+    // Post Condition: None
     void remove(value_type givenData)  {
         if (rootNode == NULL) {
             std::cout << "Cannot remove from a empty tree!" << std::endl;
@@ -41,10 +61,16 @@ public:
         }
     }
 
+    // Pre-Condition: None
+    //
+    // Post Condition: Returns a string containing data of tree from a infix traversal
     std::string toString() {
         return infixTraversal(rootNode);                    // Convert tree to string with a infix traversal
     }
 
+    // Pre-Condition: A reference to a 2nd BSTree
+    // Adds all data from 2nd BSTree to current BSTree
+    // Post Condition: None
     void operator += (BSTree<value_type>& BSTree2) {
         std::string BSTree2String;
         BSTree2String = BSTree2.toString();                                 // Get string representation of tree
