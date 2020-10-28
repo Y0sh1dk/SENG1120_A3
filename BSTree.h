@@ -85,8 +85,11 @@ public:
 
 
 private:
-    BTNode<value_type>* rootNode;
+    BTNode<value_type>* rootNode; // A pointer to the root node
 
+    // Pre-Condition: A pointer to a node and data of node value type
+    // Find the node containing the data under the given node
+    // Post Condition: Returns a pointer to the node containign the word
     BTNode<value_type>* findNode(BTNode<value_type>* node, value_type data) {
         if (node == NULL) {
             return NULL;
@@ -102,7 +105,9 @@ private:
         return NULL; // Data doesnt exit in tree
     }
 
-    // Find minimum node under current node
+    // Pre-Condition: A pointer to a node
+    // Find the node with the smallest value under the given node
+    // Post Condition: Returns a pointer to a node
     BTNode<value_type>* minNode(BTNode<value_type>* currentNode) {
         while (currentNode->getLeftChild() != NULL) {               // While not at a leaf node
             currentNode = currentNode->getLeftChild();              // Get left child (smaller than current)
@@ -110,7 +115,9 @@ private:
         return currentNode;
     }
 
-    // how many children does the given node have
+    // Pre-Condition: A pointer to a node
+    //
+    // Post Condition: Returns a int containing the number of children that node has
     int howManyChildren(BTNode<value_type>* node) {
         if (node->getLeftChild() == NULL && node->getRightChild() == NULL) {        // No children
             return 0;
@@ -121,6 +128,9 @@ private:
         }
     }
 
+    // Pre-Condition: pointer to a node
+    //
+    // Post Condition: Returns either "LEFTCHILD" or "RIGHTCHILD"
     std::string whereUnderParent(BTNode<value_type>* node) {        // Dont like returning strings :(
         if (node->getParent()->getLeftChild() == node) {            // If the node is left of its parent
             return "LEFTCHILD";
@@ -131,6 +141,9 @@ private:
         }
     }
 
+    // Pre-Condition: Data of the BSTree value type
+    //
+    // Post Condition: None
     void removeData(value_type givenData) {
         BTNode<value_type>* node = findNode(rootNode, givenData);               // Find node with the word in it
         if (node == NULL) {                                                     // Word doesnt exist!
@@ -191,6 +204,9 @@ private:
         }
     }
 
+    // Pre-Condition: A pointer to a node (root)
+    //
+    // Post Condition: Returns A string representation via a infix traversal
     value_type infixTraversal(BTNode<value_type>* node) {
         if (node == NULL) {
             return "";
@@ -200,6 +216,9 @@ private:
         }
     }
 
+    // Pre-Condition: A BTNode pointer and data
+    // Inserts the data under the given node
+    // Post Condition: None
     void insert(BTNode<value_type>* node, value_type givenData) {
         if (node == NULL) {
             return;
@@ -222,6 +241,9 @@ private:
         }
     }
 
+    // Pre-Condition: A pointer to a node (root)
+    // Cascadingly deletes all nodes under the given node
+    // Post Condition: None
     void remove(BTNode<value_type>* node) {
         remove(node->getLeftChild());
         remove(node->getRightChild());

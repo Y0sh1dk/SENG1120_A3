@@ -16,44 +16,44 @@
 template <typename value_type>
 class HTable {
 public:
-    // Pre-Condition:
+    // Pre-Condition: None
     //
-    // Post Condition:
+    // Post Condition: None
     HTable() {
         // TODO: initalize array maybe?
     }
 
-    // Pre-Condition:
-    //
-    // Post Condition:
+    // Pre-Condition: data to be added to the table
+    // Creates a table and added the given data too it
+    // Post Condition: None
     HTable(value_type data) {
         add(data);  // Add given data to HTable
     }
 
-    // Pre-Condition:
+    // Pre-Condition: None
     //
-    // Post Condition:
+    // Post Condition: None
     ~HTable() {
         // Nothing to do here?
     }
 
-    // Pre-Condition:
-    //
-    // Post Condition:
+    // Pre-Condition: Data of same value type as the HTable
+    // Adds data to the HTable at the location given by the hash function
+    // Post Condition: None
     void add(value_type givenData) {
         data[hashFunc(givenData)] = givenData;      // Assign data to array at index given by hashFunc()
     }
 
-    // Pre-Condition:
-    //
-    // Post Condition:
+    // Pre-Condition: Data of the same value type as the HTable
+    // Removes data from the HTable using the hash function to find its location
+    // Post Condition: None
     void remove(value_type givendata) {
         data[hashFunc(givendata)] = "";
     }
 
-    // Pre-Condition:
+    // Pre-Condition: None
     //
-    // Post Condition:
+    // Post Condition: Returns a string representation of the HTable
     std::string toString() {
         std::string hashTableString;
         for (int i = 0; i < SIZE; i++) {            // For each element in the array
@@ -64,9 +64,9 @@ public:
         return hashTableString;
     }
 
-    // Pre-Condition:
-    //
-    // Post Condition:
+    // Pre-Condition: A 2nd HTable
+    // Adds all data from the 2nd hash table to the current HTable
+    // Post Condition: None
     void operator += (HTable& HTable2) {
         std::string HTable2String;
         HTable2String = HTable2.toString();
@@ -83,6 +83,9 @@ private:
     static const int SIZE = 150;
     value_type data[SIZE];
 
+    // Pre-Condition: Data of the HTable value type
+    //
+    // Post Condition: Returns a int between 0 and 149
     int hashFunc(value_type givenData) { // TODO: hardcode as string?
         int addResult = 0;
         for (unsigned long int i = 0; i < givenData.length(); i++ ) { // TODO: refactor to use iterator?
