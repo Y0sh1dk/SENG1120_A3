@@ -1,4 +1,4 @@
-/*
+/**
  * Name: Yosiah de Koeyer
  * Student No: c3329520
  * Course: SENG1120 - A3
@@ -15,18 +15,21 @@
 template <typename value_type>
 class BTNode {
 public:
-    // Pre-Condition: None
-    // Creates a empty BTNode
-    // Post Condition: None
+    /**
+     * BTNode constructor
+     * Create a empty instance of BTnode
+     */
     BTNode() {
         parent = NULL;
         leftChild = NULL;
         rightChild = NULL;
     }
 
-    // Pre-Condition: Data of given value_type, Optional parent node
-    // Creates a BTNode with the given data
-    // Post Condition: None
+    /**
+     * BTNode constructor
+     * @param givenData data of given value_type to store in the node
+     * @param givenParentNode a BTNode pointer to set as this nodes parent
+     */
     BTNode(value_type givenData, BTNode* givenParentNode = NULL) {
         data = givenData;
         parent = givenParentNode;
@@ -34,65 +37,74 @@ public:
         rightChild = NULL;
     }
 
-    // Pre-Condition: None
-    // BTNode destructor
-    // Post Condition: None
+    /**
+     * BTNode::~BTNode()
+     * BTNode destructor, nothing to do here
+     */
     ~BTNode() {
         //TODO: Nothing to do here?
     }
 
-    // Pre-Condition: Data of node value type
-    // Set data of the node to the given data
-    // Post Condition: None
+    /**
+     * BTNode::SetData() method
+     * @param givenData data of given value_type to set as the nodes data
+     */
     void setData(value_type givenData) {
         data = givenData;
     }
 
-    // Pre-Condition: A BTNode pointer
-    // Set the parent of the current node to the given pointer
-    // Post Condition: None
+    /**
+     * BTNode::setParent() method
+     * @param n  pointer to a node to set as this nodes parent
+     */
     void setParent(BTNode* n) {
         parent = n;
     }
 
-    // Pre-Condition: A BTNode pointer
-    // Sets the left child of the current node to the given pointer
-    // Post Condition: None
+    /**
+     * BTNode::setLeftChild() method
+     * @param n  pointer to a node to set as this nodes left child
+     */
     void setLeftChild(BTNode* n) {
         leftChild = n;
     }
 
-    // Pre-Condition: A BTNode pointer
-    // Sets the right child of the current node to the given pointer
-    // Post Condition: None
+    /**
+     * BTNode::setRightChild() method
+     * @param n pointer to a node to set as this nodes right child
+     */
     void setRightChild(BTNode* n) {
         rightChild = n;
     }
 
-    // Pre-Condition: None
-    //
-    // Post Condition: Returns the data of the current node
+    /**
+     * BTNode::getData() method
+     * @return a copy of the nodes data
+     */
     value_type getData() {
         return data;
     }
 
-    // Pre-Condition: None
-    //
-    // Post Condition: Returns a pointer to parent node
+    /**
+     * BTNode::getParent() method
+     * @return a pointer to this nodes parent
+     */
     BTNode* getParent() {
         return parent;
     }
 
-    // Pre-Condition: None
-    //
-    // Post Condition: Returns a pointer to left child
+    /**
+     * BTNode::getLeftChild() method
+     * @return a pointer to this nodes left child
+     */
     BTNode* getLeftChild() {
         return leftChild;
     }
 
-    // Pre-Condition: None
-    //
-    // Post Condition: Returns a pointer to right child
+    /**
+     * BTNode::getRightChild() method
+     * @return a pointer to this nodes right child
+     */
     BTNode* getRightChild() {
         return rightChild;
     }

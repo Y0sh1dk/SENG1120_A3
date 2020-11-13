@@ -1,4 +1,4 @@
-/*
+/**
  * Name: Yosiah de Koeyer
  * Student No: c3329520
  * Course: SENG1120 - A3
@@ -16,44 +16,50 @@
 template <typename value_type>
 class HTable {
 public:
-    // Pre-Condition: None
-    //
-    // Post Condition: None
+    /**
+     * HTable constructor
+     */
     HTable() {
         // TODO: initalize array maybe?
     }
 
-    // Pre-Condition: data to be added to the table
-    // Creates a table and added the given data too it
-    // Post Condition: None
+    /**
+     * Htable constructor
+     * @param data given data to be added to the HTable
+     */
     HTable(value_type data) {
         add(data);  // Add given data to HTable
     }
 
-    // Pre-Condition: None
-    //
-    // Post Condition: None
+    /**
+     * HTable::~Htable() method
+     * A Instance of HTable doesnt store anything on the heap so the destructor has nothing to do
+     */
     ~HTable() {
-        // Nothing to do here?
+        // Nothing to do here
     }
 
-    // Pre-Condition: Data of same value type as the HTable
-    // Adds data to the HTable at the location given by the hash function
-    // Post Condition: None
+    /**
+     * HTable::add() method
+     * @param givenData data of given value_type to add to the HTable
+     */
     void add(value_type givenData) {
         data[hashFunc(givenData)] = givenData;      // Assign data to array at index given by hashFunc()
     }
 
-    // Pre-Condition: Data of the same value type as the HTable
-    // Removes data from the HTable using the hash function to find its location
-    // Post Condition: None
+    /**
+     * HTable::remove() method
+     * @param givendata data of given value_type to remove from the HTable
+     */
     void remove(value_type givendata) {
         data[hashFunc(givendata)] = "";
     }
 
-    // Pre-Condition: None
-    //
-    // Post Condition: Returns a string representation of the HTable
+
+    /**
+     * HTable::toString() method
+     * @return a String representation of the table
+     */
     std::string toString() {
         std::string hashTableString;
         for (int i = 0; i < SIZE; i++) {            // For each element in the array
@@ -64,9 +70,10 @@ public:
         return hashTableString;
     }
 
-    // Pre-Condition: A 2nd HTable
-    // Adds all data from the 2nd hash table to the current HTable
-    // Post Condition: None
+    /**
+     * Overloaded += operator
+     * @param HTable2 second HTable to add all values of to this table
+     */
     void operator += (HTable& HTable2) {
         std::string HTable2String;
         HTable2String = HTable2.toString();
@@ -80,22 +87,27 @@ public:
     }
 
 private:
-    static const int SIZE = 150;
-    value_type data[SIZE];
+    static const int SIZE = 150;    // size of HTable array
+    value_type data[SIZE];          // array of given value_type to store data in
 
-    // Pre-Condition: Data of the HTable value type
-    //
-    // Post Condition: Returns a int between 0 and 149
+    /**
+     * HTable::hashFunc() method
+     * @param givenData data of given value_type to calculate the hash value of
+     * @return an int, the 'hash' representing where the given data should be stored in the array
+     */
     int hashFunc(value_type givenData) { // TODO: hardcode as string?
         int addResult = 0;
         for (unsigned long int i = 0; i < givenData.length(); i++ ) { // TODO: refactor to use iterator?
             addResult += (int)givenData[i];
         }
-        return  addResult % 150;
+        return  addResult % SIZE;
     }
 
 };
 
+/**
+ * HTable overloaded << operator
+ */
 template <typename value_type>
 std::ostream& operator << (std::ostream& out, HTable<value_type>& hashTable) {
     std::string HTstring = hashTable.toString();
