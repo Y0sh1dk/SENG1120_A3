@@ -52,7 +52,9 @@ public:
      * @param givendata data of given value_type to remove from the HTable
      */
     void remove(value_type givendata) {
-        data[hashFunc(givendata)] = "";
+        if (data[hashFunc(givendata)] == givendata) { // only remove if its there
+            data[hashFunc(givendata)] = "";
+        }
     }
 
 
