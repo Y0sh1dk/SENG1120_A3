@@ -79,15 +79,28 @@ public:
      * @param BSTree2 2nd tree to add all values into this tree
      */
     void operator += (BSTree<value_type>& BSTree2) {
-        std::string BSTree2String;
-        BSTree2String = BSTree2.toString();                                 // Get string representation of tree
-        int pos = -1;
-        for (unsigned long int i = 0; i <= BSTree2String.length(); i++) {   // Loop through whole string
-            if (isspace(BSTree2String[i])) {
-                add(BSTree2String.substr(pos+1, i-(pos+1)));                // Add each word
-                pos = i;
+        bool finished = false;
+        while (!finished) {
+            value_type data = BSTree2.removeAndReturnRoot();
+            if (data != "") {
+                add(data);
+            } else {
+                finished = true;
             }
         }
+    }
+
+    /**
+     * BSTree removeAndReturnRoot() method
+     * @return data of given value_type stored in the root node (deletes root node)
+     */
+    value_type removeAndReturnRoot() {
+        if (rootNode != NULL) {
+            value_type tempData = rootNode->getData();
+            removeData(tempData);
+            return tempData;
+        }
+        return ""; // cant compare string to NULL so has to return ""
     }
 
 
@@ -282,6 +295,19 @@ std::ostream& operator << (std::ostream& out, BSTree<value_type>& tree) {
     std::string treeString = tree.toString();                                       // Get string representation of tree
     out << treeString;
     return out;
+
+//    bool finished = false;
+//    while (!finished) {
+//        value_type data = tree.removeAndReturnRoot();
+//        if (data != "") {
+//            out << tree.removeAndReturnRoot();
+//        } else {
+//            finished = true;
+//        }
+//    }
+//    return out;
+
+
 }
 
 #endif //BSTREE_H
