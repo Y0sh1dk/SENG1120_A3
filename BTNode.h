@@ -17,7 +17,7 @@ class BTNode {
 public:
     /**
      * BTNode constructor
-     * Create a empty instance of BTnode
+     * Create a empty instance of BTNode
      */
     BTNode() {
         parent = NULL;
@@ -49,7 +49,7 @@ public:
      * BTNode::SetData() method
      * @param givenData data of given value_type to set as the nodes data
      */
-    void setData(value_type givenData) {
+    void setData(value_type const givenData) {
         data = givenData;
     }
 
@@ -57,7 +57,7 @@ public:
      * BTNode::setParent() method
      * @param n  pointer to a node to set as this nodes parent
      */
-    void setParent(BTNode* n) {
+    void setParent(BTNode* const n) {
         parent = n;
     }
 
@@ -65,7 +65,7 @@ public:
      * BTNode::setLeftChild() method
      * @param n  pointer to a node to set as this nodes left child
      */
-    void setLeftChild(BTNode* n) {
+    void setLeftChild(BTNode* const n) {
         leftChild = n;
     }
 
@@ -73,7 +73,7 @@ public:
      * BTNode::setRightChild() method
      * @param n pointer to a node to set as this nodes right child
      */
-    void setRightChild(BTNode* n) {
+    void setRightChild(BTNode* const n) {
         rightChild = n;
     }
 
@@ -81,7 +81,7 @@ public:
      * BTNode::getData() method
      * @return a copy of the nodes data
      */
-    value_type getData() {
+    value_type getData() const {
         return data;
     }
 
@@ -89,7 +89,7 @@ public:
      * BTNode::getParent() method
      * @return a pointer to this nodes parent
      */
-    BTNode* getParent() {
+    BTNode* getParent() const {
         return parent;
     }
 
@@ -97,7 +97,7 @@ public:
      * BTNode::getLeftChild() method
      * @return a pointer to this nodes left child
      */
-    BTNode* getLeftChild() {
+    BTNode* getLeftChild() const {
         return leftChild;
     }
 
@@ -105,7 +105,7 @@ public:
      * BTNode::getRightChild() method
      * @return a pointer to this nodes right child
      */
-    BTNode* getRightChild() {
+    BTNode* getRightChild() const {
         return rightChild;
     }
 

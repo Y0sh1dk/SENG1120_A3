@@ -20,7 +20,7 @@ public:
      * HTable constructor
      */
     HTable() {
-        // TODO: initalize array maybe?
+        current = 0;
     }
 
     /**
@@ -73,24 +73,55 @@ public:
     }
 
     /**
+     * HTable::getDataAtCurrent() method
+     * @return data stored in the HTable of given value_type at the current
+     */
+    value_type getDataAtCurrent() {
+        return data[current];
+    }
+
+    /**
+     * HTable::resetCurrent() method
+     * Resets the current pointer back to 0
+     */
+    void resetCurrent() {
+        current = 0;
+    }
+
+    /**
+     * HTable::incrementCurrent() method
+     * Increments the current pointer by 1
+     */
+    void incrementCurrent() {
+        current++;
+    }
+
+    /**
      * Overloaded += operator
      * @param HTable2 second HTable to add all values of to this table
      */
     void operator += (HTable& HTable2) {
-        std::string HTable2String;
-        HTable2String = HTable2.toString();
-        int pos = -1;
-        for (unsigned long int i = 0; i <= HTable2String.length(); i++) { // TODO: refactor to use iterator?
-            if (isspace(HTable2String[i])) {
-                add(HTable2String.substr(pos+1, i-(pos+1)));
-                pos = i;
+        for (int i = 0; i < HTable2.getSize(); i ++) {
+            if (HTable2.getDataAtCurrent()!= "") {
+                add(HTable2.getDataAtCurrent());
             }
+            HTable2.incrementCurrent();
         }
+        HTable2.resetCurrent();
+    }
+
+    /**
+     * HTable::getSize() method
+     * @return a int containing the max size of the HTable array
+     */
+    const int getSize() {
+        return SIZE;
     }
 
 private:
     static const int SIZE = 150;    // size of HTable array
     value_type data[SIZE];          // array of given value_type to store data in
+    int current;                    // current pointer
 
     /**
      * HTable::hashFunc() method
