@@ -27,7 +27,7 @@ public:
      * Htable constructor
      * @param data given data to be added to the HTable
      */
-    HTable(value_type data) {
+    HTable(value_type const data) {
         add(data);  // Add given data to HTable
     }
 
@@ -43,7 +43,7 @@ public:
      * HTable::add() method
      * @param givenData data of given value_type to add to the HTable
      */
-    void add(value_type givenData) {
+    void add(value_type const givenData) {
         data[hashFunc(givenData)] = givenData;      // Assign data to array at index given by hashFunc()
     }
 
@@ -51,7 +51,7 @@ public:
      * HTable::remove() method
      * @param givendata data of given value_type to remove from the HTable
      */
-    void remove(value_type givendata) {
+    void remove(value_type const givendata) {
         if (data[hashFunc(givendata)] == givendata) { // only remove if its there
             data[hashFunc(givendata)] = "";
         }
@@ -62,7 +62,7 @@ public:
      * HTable::toString() method
      * @return a String representation of the table
      */
-    std::string toString() {
+    std::string toString() const {
         std::string hashTableString;
         for (int i = 0; i < SIZE; i++) {            // For each element in the array
             if (data[i] != "") {                    // If contains data, append to string
@@ -76,7 +76,7 @@ public:
      * HTable::getDataAtCurrent() method
      * @return data stored in the HTable of given value_type at the current
      */
-    value_type getDataAtCurrent() {
+    value_type getDataAtCurrent() const {
         return data[current];
     }
 
@@ -128,7 +128,7 @@ private:
      * @param givenData data of given value_type to calculate the hash value of
      * @return an int, the 'hash' representing where the given data should be stored in the array
      */
-    int hashFunc(value_type givenData) { // TODO: hardcode as string?
+    int hashFunc(value_type const givenData) { // TODO: hardcode as string?
         int addResult = 0;
         for (unsigned long int i = 0; i < givenData.length(); i++ ) { // TODO: refactor to use iterator?
             addResult += (int)givenData[i];

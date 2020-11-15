@@ -30,7 +30,7 @@ public:
      * @param givenData data of given value_type to store in the node
      * @param givenParentNode a BTNode pointer to set as this nodes parent
      */
-    BTNode(value_type givenData, BTNode* givenParentNode = NULL) {
+    BTNode(value_type const givenData, BTNode* const givenParentNode = NULL) {
         data = givenData;
         parent = givenParentNode;
         leftChild = NULL;

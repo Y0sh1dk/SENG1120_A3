@@ -30,7 +30,7 @@ public:
      * BSTree constructor
      * @param givenRoot a pointer to a BTNode to be used as the root node
      */
-    BSTree(BTNode<value_type>* givenRoot) {     // If passed a tree (Node)
+    BSTree(BTNode<value_type>* const givenRoot) {     // If passed a tree (Node)
         rootNode = givenRoot;
     }
 
@@ -39,14 +39,14 @@ public:
      * Calls private deleteTree() method one the rootnode, recursively deleting the entire tree
      */
     ~BSTree() {
-        remove(rootNode);
+        removeTree(rootNode);
     }
 
     /**
      * BSTree::add() method
      * @param givenData data of given data_type to add to the tree
      */
-    void add(value_type givenData) {
+    void add(value_type const givenData) {
         if (rootNode == NULL) {                             // If BST empty
             rootNode = new BTNode<value_type>(givenData);   // New data will be root node
         } else {
@@ -58,7 +58,7 @@ public:
      * BSTree::remove() method
      * @param givenData data of given value_type to remove from the tree
      */
-    void remove(value_type givenData)  {
+    void remove(value_type const givenData)  {
         if (rootNode == NULL) {
             std::cout << "Cannot remove from a empty tree!" << std::endl;
         } else {
@@ -113,7 +113,7 @@ private:
      * @param data data of given value_type which to look for
      * @return a pointer to the first node containing the given data under the given node
      */
-    BTNode<value_type>* findNode(BTNode<value_type>* node, value_type data) {
+    BTNode<value_type>* findNode(BTNode<value_type>* const node, value_type const data) {
         if (node == NULL) {
             return NULL;
         } else {
@@ -145,7 +145,7 @@ private:
      * @param node a pointer to a node in which you want to know how many children it has
      * @return a int containing the number of children the node has
      */
-    int howManyChildren(BTNode<value_type>* node) {
+    int howManyChildren(BTNode<value_type>* const node) {
         if (node->getLeftChild() == NULL && node->getRightChild() == NULL) {        // No children
             return 0;
         } else if (node->getLeftChild() != NULL && node->getRightChild() != NULL) { // Two children
@@ -160,7 +160,7 @@ private:
      * @param node a pointer to the node in which you would like to know where located under its parent
      * @return a String either "LEFTCHILD" or "RIGHTCHILD"
      */
-    std::string whereUnderParent(BTNode<value_type>* node) {        // Dont like returning strings :(
+    std::string whereUnderParent(BTNode<value_type>* const node) {        // Dont like returning strings :(
         if (node->getParent()->getLeftChild() == node) {            // If the node is left of its parent
             return "LEFTCHILD";
         } else if (node->getParent()->getRightChild() == node) {    // If node is right of its parent
@@ -174,7 +174,7 @@ private:
      * BSTree::removeData() method
      * @param givenData data of the given value_type in which you would like to remove from the tree
      */
-    void removeData(value_type givenData) {
+    void removeData(value_type const givenData) {
         BTNode<value_type>* node = findNode(rootNode, givenData);               // Find node with the word in it
         if (node == NULL) {                                                     // Word doesnt exist!
             return;
@@ -239,7 +239,7 @@ private:
      * @param node  a pointer to the node in which to start the infix traversal from
      * @return
      */
-    value_type infixTraversal(BTNode<value_type>* node) {
+    value_type infixTraversal(BTNode<value_type>* const node) {
         if (node == NULL) {
             return "";
         } else {
@@ -253,7 +253,7 @@ private:
      * @param node node at which you would like to insert given data under
      * @param givenData data of given value_type to insert into the tree
      */
-    void insert(BTNode<value_type>* node, value_type givenData) {
+    void insert(BTNode<value_type>* const node, value_type const givenData) {
         if (node == NULL) {
             return;
         } else {
@@ -276,13 +276,11 @@ private:
     }
 
     /**
-     * BSTree::remove() method
+     * BSTree::removeTree() method
      * @param node a pointer to the node you would like to delete, including all the nodes under it (reccurively)
      */
-    void remove(BTNode<value_type>* node) {
-        remove(node->getLeftChild());   // recursive call
-        remove(node->getRightChild());  // recursive call
-        delete(node);
+    void removeTree(BTNode<value_type>* const node) {
+        while (removeAndReturnRoot() != "");
     }
 
 };
@@ -295,17 +293,6 @@ std::ostream& operator << (std::ostream& out, BSTree<value_type>& tree) {
     std::string treeString = tree.toString();                                       // Get string representation of tree
     out << treeString;
     return out;
-
-//    bool finished = false;
-//    while (!finished) {
-//        value_type data = tree.removeAndReturnRoot();
-//        if (data != "") {
-//            out << tree.removeAndReturnRoot();
-//        } else {
-//            finished = true;
-//        }
-//    }
-//    return out;
 
 
 }
